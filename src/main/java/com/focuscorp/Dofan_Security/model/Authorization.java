@@ -1,27 +1,30 @@
 package com.focuscorp.Dofan_Security.model;
 
 
-import javax.persistence.*;
+
 import java.util.Set;
 
-@Entity
-@Table(name = "authorization")
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "authorizations")
 public class Authorization {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     private String label;
 
-    @ManyToMany
+   // @ManyToMany
+    @DBRef
     private Set<Role> roles;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

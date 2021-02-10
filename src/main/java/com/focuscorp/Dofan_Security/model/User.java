@@ -1,38 +1,51 @@
 package com.focuscorp.Dofan_Security.model;
 
-import javax.persistence.*;
+
 import java.util.Set;
 
-@Entity
-@Table(name = "user")
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
-    private String username;
+    private String name;
 
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "user_role_id")
-    private Role role;
+    public User() {
+    }
 
-    public Long getId() {
+    public User(String name) {
+        this.name = name;
+    }
+
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+    /*   @ManyToOne
+    @JoinColumn(name = "user_role_id")
+     private Role role;*/
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -43,11 +56,12 @@ public class User {
         this.password = password;
     }
 
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
