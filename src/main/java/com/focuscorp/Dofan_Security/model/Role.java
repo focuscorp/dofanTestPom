@@ -11,48 +11,35 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Role {
 
     @Id
-    private int id;
+    private String id;
 
-    private String name;
+    private ERole name;
 
 //    @OneToMany(mappedBy = "userRole", cascade = CascadeType.ALL)
-    @DBRef
-    private Set<User> users;
+/*    @DBRef
+    private Set<User> users;*/
 
-//    @ManyToMany(mappedBy = "roles")
-    @DBRef
-    private Set<Authorization> authorizations;
-
-
-    public int getId() {
-        return id;
+    public Role() {
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public Role(ERole name) {
         this.name = name;
     }
 
-    public Set<User> getUsers() {
-        return users;
+    public String getId() {
+        return id;
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public Set<Authorization> getAuthorizations() {
-        return authorizations;
+    public ERole getName() {
+        return name;
     }
 
-    public void setAuthorizations(Set<Authorization> authorizations) {
-        this.authorizations = authorizations;
+    public void setName(ERole name) {
+        this.name = name;
     }
+
 }
