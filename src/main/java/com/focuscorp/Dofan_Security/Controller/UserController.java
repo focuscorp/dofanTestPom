@@ -24,11 +24,11 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public String findAllUsers(Model model) {
+    public List<User> findAllUsers(Model model) {
         final List<User> users = userService.findAllUsers();
 
         model.addAttribute("users", users);
-        return "list-users";
+        return users ;
     }
 
     @RequestMapping("/searchUser")

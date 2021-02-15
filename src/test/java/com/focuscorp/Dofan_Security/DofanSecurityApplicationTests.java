@@ -33,14 +33,14 @@ class DofanSecurityApplicationTests {
 
 
 		//add roles
-		/*roleRepo.save(new Role(ERole.ROLE_USER));
-		roleRepo.save(new Role(ERole.ROLE_MODERATOR));
-		roleRepo.save(new Role(ERole.ROLE_ADMIN));
+		//roleRepo.save(new Role(ERole.ROLE_USER));
+		/*roleRepo.save(new Role(ERole.ROLE_MODERATOR));
+		/*roleRepo.save(new Role(ERole.ROLE_ADMIN));
 		System.out.println("Roles added successfully");*/
 
 		// save a couple of customers
 
-	/*	Set<Role> roles = new HashSet<>();
+		/*Set<Role> roles = new HashSet<>();
 
 
 		Role adminRole = roleRepo.findByName(ERole.ROLE_ADMIN);
