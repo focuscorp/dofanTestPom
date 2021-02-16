@@ -29,11 +29,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 
-//@RequestMapping("/")
-//@RequestMapping("/auth")
-//@Controller
-@RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/")
+@Controller
+/*@RestController
+@RequestMapping("/api/auth")*/
 public class AuthController {
     @Autowired
     AuthenticationManager authenticationManager;
@@ -50,11 +49,9 @@ public class AuthController {
     @Autowired
     JwtUtils jwtUtils;
 
-    @PostMapping("/signin")
-   // @RequestMapping(value = "/signin", method = RequestMethod.POST)
-/*   @RequestMapping(value = "/index", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE} ,
-           produces = {MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})*/
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+   // @PostMapping("/signin")
+   @RequestMapping(value = "/index", method = RequestMethod.POST)
+    public ResponseEntity<?> authenticateUser(@Valid LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
@@ -74,8 +71,8 @@ public class AuthController {
                 roles));
     }
 
-    @PostMapping("/signup")
-   // @RequestMapping(value = "/signup", method = RequestMethod.POST)
+   // @PostMapping("/signup")
+    @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity
