@@ -23,7 +23,7 @@ public class TestController {
 
     // @RequestMapping(value = "/user", method = RequestMethod.GET)
     @GetMapping("/user")
-    @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_MODERATOR') or hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     public String userAccess() {
         return "User Content.";
     }
@@ -31,7 +31,7 @@ public class TestController {
 
     // @RequestMapping(value = "/mod", method = RequestMethod.GET)
     @GetMapping("/mod")
-    @PreAuthorize("hasRole('ROLE_MODERATOR')")
+    @PreAuthorize("hasRole('MODERATOR')")
     public String moderatorAccess() {
         return "Moderator Board.";
     }
@@ -39,7 +39,7 @@ public class TestController {
 
     //@RequestMapping(value = "/admin", method = RequestMethod.GET)
     @GetMapping("/admin")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public String adminAccess() {
         return "Admin Board.";
     }
