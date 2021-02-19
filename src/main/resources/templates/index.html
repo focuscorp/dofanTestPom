@@ -67,6 +67,18 @@
             background-color: #45a049;
         }
 
+        /* style the signup button */
+        input[type=button] {
+            background-color: #40E0D0;
+            color: white;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        input[type=button]:hover {
+            background-color: #48D1CC;
+        }
+
         /* Two-column layout */
         .col {
 
@@ -136,7 +148,7 @@
 <body>
 
 <div class="container">
-    <form action="/index" method="POST">
+    <form action="/dashboard" method="POST">
         <div class="row">
 
             <div class="col">
@@ -150,11 +162,11 @@
     </form>
     <div class="row">
         <div class="col">
-            <a th:href="@{/signup}" style="" class="btn">Sign up</a>
+            <a th:href="@{/signup}" >
+                <input type="button" value="Sign up">
+            </a>
         </div>
-        <div class="col">
-            <a href="#" style="" class="btn">Forgot password?</a>
-        </div>
+
     </div>
 </div>
 

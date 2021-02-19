@@ -51,12 +51,12 @@ public class AuthController {
     JwtUtils jwtUtils;
 
    // @PostMapping("/signin")
-   @RequestMapping(value = "/index", method = RequestMethod.POST)
-    public ResponseEntity<?> authenticateUser(@Valid LoginRequest loginRequest) {
+   @RequestMapping(value = "/dashboard", method = RequestMethod.POST)
+    public String authenticateUser(@Valid LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-
+       System.out.println(authentication);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
 
@@ -65,11 +65,12 @@ public class AuthController {
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
 
-        return ResponseEntity.ok(new JwtResponse(jwt,
+        /*return ResponseEntity.ok(new JwtResponse(jwt,
                 userDetails.getId(),
                 userDetails.getUsername(),
                 userDetails.getEmail(),
-                roles));
+                roles));*/
+        return "dashboard";
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
