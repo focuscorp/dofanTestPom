@@ -20,6 +20,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -29,7 +30,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 
-@RequestMapping("/")
+//@RequestMapping("/")
 @Controller
 /*@RestController
 @RequestMapping("/api/auth")*/
@@ -71,9 +72,16 @@ public class AuthController {
                 roles));
     }
 
+    @RequestMapping(value = "/signup", method = RequestMethod.GET)
+    public String signupGet(Model model) {
+        User user = new User();
+        model.addAttribute("registereduser", user);
+        System.out.println(user.toString());
+        return "signup";
+    }
    // @PostMapping("/signup")
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+    public ResponseEntity<?> registerUser(@Valid SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()

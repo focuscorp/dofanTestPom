@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>Signup</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -150,7 +150,7 @@
 
 
 <div class="container">
-    <form action="/signup" method="POST">
+    <form action="/signup" th:object="${registereduser}" method="POST">
         <div class="row">
 
             <div class="col">
