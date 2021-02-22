@@ -56,7 +56,7 @@ public class AuthController {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
-       System.out.println(authentication);
+        System.out.println("dashboard ppst : " + authentication);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
 
@@ -77,32 +77,35 @@ public class AuthController {
     public String signupGet(Model model) {
         User user = new User();
         model.addAttribute("registereduser", user);
-        System.out.println(user.toString());
+        System.out.println("signup get : "+user.toString());
         return "signup";
     }
    // @PostMapping("/signup")
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public ResponseEntity<?> registerUser(@Valid SignupRequest signUpRequest) {
+    public String registerUser(@Valid SignupRequest signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Error: Username is already taken!"));
+            //return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
+            System.out.println("Error: Username is already taken!");
         }
 
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Error: Email is already in use!"));
+            //return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
+            System.out.println("Error: Email is already in use!");
         }
 
         // Create new user's account
         User user = new User(signUpRequest.getUsername(),
-                signUpRequest.getEmail(),
-                encoder.encode(signUpRequest.getPassword()));
+                             signUpRequest.getEmail(),
+                             encoder.encode(signUpRequest.getPassword()));
 
+        // strRoles will return null if the roles is not passed as parameter
         Set<String> strRoles = signUpRequest.getRoles();
+        System.out.println("signup post : strRoles as param : "+strRoles);
         Set<Role> roles = new HashSet<>();
 
+        /*
+        * commented this code, it can be reused later on user creation
+        *
         if (strRoles == null) {
             Role userRole = roleRepository.findByName(ERole.ROLE_USER)
                       .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
@@ -130,9 +133,18 @@ public class AuthController {
             });
         }
 
+        */
+
+        //Register page will create only admin user
+        Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
+                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+        roles.add(adminRole);
+        System.out.println("signup post : user with role admin : "+roles);
+
         user.setRoles(roles);
         userRepository.save(user);
 
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+        //return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+        return "index";
     }
 }
