@@ -1,90 +1,70 @@
 package com.focuscorp.Dofan_Security.Controller;
 
 import com.focuscorp.Dofan_Security.service.UserService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.data.repository.query.Param;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import com.focuscorp.Dofan_Security.model.User;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/user")
+@Controller
 public class UserController {
 
-    private final UserService userService;
+    @Autowired
+    private UserService userService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public UserController() {
     }
 
-    @GetMapping("/users")
-    public List<User> findAllUsers(Model model) {
-        final List<User> users = userService.findAllUsers();
-
-        model.addAttribute("users", users);
-        return users ;
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    public String newUser(Model model) {
+        model.addAttribute("newuser", new User());
+        List<User> list = (List<User>)userService.findAllUsers( );
+        model.addAttribute("users",list);
+        return "/users";
     }
 
-    @RequestMapping("/searchUser")
-    public String searchUser(@Param("keyword") String keyword, Model model) {
-        final List<User> users = userService.searchUsers(keyword);
 
-        model.addAttribute("users", users);
-        model.addAttribute("keyword", keyword);
-        return "list-users";
-    }
-
-    @RequestMapping("/user/{username}")
-    public String findByUsername(@PathVariable("username") String username, Model model) {
-        final User user = userService.findByUsername(username);
-
-        model.addAttribute("user", user);
-        return "list-user";
-    }
-
-    /*@RequestMapping("/searchUser")
-    public String searchUser(@Param("username") String username, Model model) {
-        final List<User> users = userService.searchUsers(username);
-
-        model.addAttribute("users", users);
-        model.addAttribute("username", username);
-        return "list-users";
-    }*/
-
-    @RequestMapping("/add-user")
-    public String createUser(User user, BindingResult result, Model model) {
-        if (result.hasErrors()) {
+    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
+    public String addUser(@ModelAttribute("newuser") User user, Model model) {
+        /*if (result.hasErrors()) {
             return "add-user";
-        }
+        }*/
 
-        userService.createUser(user);
-        model.addAttribute("user", userService.findAllUsers());
+        userService.addUser(user);
+        //model.addAttribute("user", userService.findAllUsers());
         return "redirect:/users";
     }
 
-    /*@RequestMapping("/update-user/{id}")
-    public String updateUser(@PathVariable("id") Long id, User user, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            user.setId(id);
-            return "update-user";
-        }
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String deleteUser(@PathVariable("id") String userId, Model model) {
+        System.out.println("Deleeeeeeeeeeeeeeeeeeeeeeeeeeteeeeeee");
 
-        userService.updateUser(user);
-        model.addAttribute("user", userService.findAllUsers());
+        System.out.println(userId);
+        userService.deleteById(userId);
         return "redirect:/users";
-    }*/
+    }
 
-    @RequestMapping("/remove-user/{id}")
-    public String deleteUser(@PathVariable("id") Long id, Model model) {
-        userService.deleteUser(id);
 
-        model.addAttribute("user", userService.findAllUsers());
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String  editUser(@PathVariable("id") String userId, Model model){
+        System.out.println("EDIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIITtttttt");
+        User user1=   (User)userService.findById(userId).get();
+        model.addAttribute("EditableUser",user1 );
+        System.out.println(model.getAttribute("EditableUser"));
+        System.out.println(userService.findById(userId));
+        System.out.println(user1);
+        return "/edit_user";
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String saveEditedUser(@ModelAttribute("EditableUser") User user) {
+
+        userService.addUser(user);
+        System.out.println(" iam here ");
         return "redirect:/users";
     }
 
