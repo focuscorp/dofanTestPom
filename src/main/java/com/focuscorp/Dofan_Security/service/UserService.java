@@ -1,19 +1,51 @@
 package com.focuscorp.Dofan_Security.service;
 
 import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.focuscorp.Dofan_Security.model.User;
+import com.focuscorp.Dofan_Security.repository.UserRepository;
 
-public interface UserService {
+@Service
+public class UserService {
+    @Autowired
+    private final UserRepository userRepository;
 
-    public List<User> findAllUsers();
-
-    public List<User> searchUsers(String keyword);
-
-    public User findByUsername(String username);
-
-    public void createUser(User user);
-
-    public void updateUser(User user);
-
-    public void deleteUser(Long id);
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
+
+    public void addUser(User user)
+
+
+    {
+
+        userRepository.save(user);
+        System.out.println("mchetttt w tzed el user");
+    }
+
+    public void deleteById(String userId)
+    {
+        userRepository.deleteById(userId);
+        System.out.println("********* Success Delete **************");
+    }
+
+    public User findUserByEmail(String email)
+    {
+        return userRepository.findByEmail(email);
+    }
+
+    public Optional<User> findById(String id){
+
+        return userRepository.findById(id);
+    }
+    public Iterable<User> findAllUsers() {
+
+        System.out.println("tt les users");
+        return userRepository.findAll();
+
+    }
+}

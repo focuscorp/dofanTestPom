@@ -1,6 +1,5 @@
 package com.focuscorp.Dofan_Security.model;
 
-
 import java.util.Set;
 
 import javax.validation.constraints.Email;
@@ -13,6 +12,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "users")
 public class User {
+
+    private boolean enabled;
 
     @Id
     private String id;
@@ -35,6 +36,7 @@ public class User {
 
     public User() {
     }
+
 
     public User(@NotBlank @Size(max = 20) String username) {
         this.username = username;
@@ -98,6 +100,14 @@ public class User {
         this.roles = roles;
     }
 
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+    
     @Override
     public String toString() {
         return "User{" +
@@ -107,4 +117,5 @@ public class User {
                 ", password='" + password + '\'' +
                 '}';
     }
+    
 }

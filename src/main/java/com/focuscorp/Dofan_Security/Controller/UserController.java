@@ -1,91 +1,166 @@
 package com.focuscorp.Dofan_Security.Controller;
 
+import com.focuscorp.Dofan_Security.service.EmailSenderService;
 import com.focuscorp.Dofan_Security.service.UserService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.data.repository.query.Param;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
+import com.focuscorp.Dofan_Security.model.ConfirmationToken;
 import com.focuscorp.Dofan_Security.model.User;
-import org.springframework.web.bind.annotation.RestController;
+import com.focuscorp.Dofan_Security.repository.ConfirmationTokenRepository;
+import com.focuscorp.Dofan_Security.repository.UserRepository;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/user")
+@Controller
 public class UserController {
 
-    private final UserService userService;
+    @Autowired
+	private UserRepository userRepository;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private ConfirmationTokenRepository confirmationTokenRepository;
+
+    @Autowired
+    private EmailSenderService emailSenderService;
+
+    public UserController() {
     }
 
-    @GetMapping("/users")
-    public List<User> findAllUsers(Model model) {
-        final List<User> users = userService.findAllUsers();
+    ///////////////////////   Display users  ////////////////////////////////////////////////// 
 
-        model.addAttribute("users", users);
-        return users ;
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    public String newUser(Model model) {
+        model.addAttribute("newuser", new User());
+        List<User> list = (List<User>)userService.findAllUsers( );
+        model.addAttribute("users",list);
+        return "/users";
     }
 
-    @RequestMapping("/searchUser")
-    public String searchUser(@Param("keyword") String keyword, Model model) {
-        final List<User> users = userService.searchUsers(keyword);
+    ///////////////////////   Create/Add  ////////////////////////////////////////////////// 
 
-        model.addAttribute("users", users);
-        model.addAttribute("keyword", keyword);
-        return "list-users";
-    }
+    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
+    public ModelAndView addUser(@ModelAttribute("newuser") User user, ModelAndView modelAndView) {
 
-    @RequestMapping("/user/{username}")
-    public String findByUsername(@PathVariable("username") String username, Model model) {
-        final User user = userService.findByUsername(username);
-
-        model.addAttribute("user", user);
-        return "list-user";
-    }
-
-    /*@RequestMapping("/searchUser")
-    public String searchUser(@Param("username") String username, Model model) {
-        final List<User> users = userService.searchUsers(username);
-
-        model.addAttribute("users", users);
-        model.addAttribute("username", username);
-        return "list-users";
-    }*/
-
-    @RequestMapping("/add-user")
-    public String createUser(User user, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "add-user";
+        User existingUser = userRepository.findByEmailIgnoreCase(user.getEmail());
+        System.out.println("adding Userrrr" + user.getEmail());
+        if(existingUser != null)
+        {
+            modelAndView.addObject("message", "This email already exists!");
+            modelAndView.setViewName("error");
         }
+        else
+        {
+            userService.addUser(user);
 
-        userService.createUser(user);
-        model.addAttribute("user", userService.findAllUsers());
+            ConfirmationToken confirmationToken = new ConfirmationToken(user);
+            System.out.println("hello ****************");
+            confirmationTokenRepository.save(confirmationToken);
+            System.out.println("helloooo");
+            SimpleMailMessage mailMessage = new SimpleMailMessage();
+            mailMessage.setTo(user.getEmail());
+            mailMessage.setSubject("Complete Registration!");
+            mailMessage.setFrom("DOFAN");
+            mailMessage.setText("To confirm your account, please click here : "
+            +"http://localhost:8102/confirm?token="+confirmationToken.getConfirmationToken());
+            
+            emailSenderService.sendEmail(mailMessage);
+            System.out.println("helloooo  Send email");
+
+            modelAndView.addObject("email", user.getEmail());
+
+            modelAndView.setViewName("successfulUserAdding");
+            }
+        
+        return modelAndView;
+    }
+
+    @RequestMapping(value="/confirm", method= {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView confirmUserAccount(ModelAndView modelAndView, @RequestParam("token")String confirmationToken)
+	{
+		ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
+		
+		if(token != null)
+		{
+			User user = userRepository.findByEmailIgnoreCase(token.getUser().getEmail());
+            System.out.println("confirm emaill" + token.getUser());
+			user.setEnabled(true);
+			userRepository.save(user);
+            modelAndView.setViewName("accountVerified");
+		}
+		else
+		{
+			modelAndView.addObject("message","The link is invalid or broken!");
+			modelAndView.setViewName("error");
+		}
+
+        return modelAndView;
+		
+	}
+
+    ///////////////////////   Delete  //////////////////////////////////////////////////
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String deleteUser(@PathVariable("id") String userId, Model model) {
+        System.out.println("Deleeeeeeeeeeeeeeeeeeeeeeeeeeteeeeeee");
+
+        System.out.println(userId);
+        userService.deleteById(userId);
         return "redirect:/users";
     }
 
-    /*@RequestMapping("/update-user/{id}")
-    public String updateUser(@PathVariable("id") Long id, User user, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            user.setId(id);
-            return "update-user";
-        }
+    ///////////////////////   Edit  //////////////////////////////////////////////////  
 
-        userService.updateUser(user);
-        model.addAttribute("user", userService.findAllUsers());
-        return "redirect:/users";
-    }*/
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String  editUser(@PathVariable("id") String userId, Model model){
+        System.out.println("EDIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIITtttttt");
+        User user1=   (User)userService.findById(userId).get();
+        model.addAttribute("EditableUser",user1 );
+        System.out.println(model.getAttribute("EditableUser"));
+        System.out.println(userService.findById(userId));
+        System.out.println(user1);
+        return "/edit_user";
+    }
 
-    @RequestMapping("/remove-user/{id}")
-    public String deleteUser(@PathVariable("id") Long id, Model model) {
-        userService.deleteUser(id);
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String saveEditedUser(@ModelAttribute("EditableUser") User user) {
 
-        model.addAttribute("user", userService.findAllUsers());
+        userService.addUser(user);
+        System.out.println(" iam here ");
         return "redirect:/users";
     }
 
+    
+	public UserRepository getUserRepository() {
+		return userRepository;
+	}
+
+	public void setUserRepository(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
+
+	public ConfirmationTokenRepository getConfirmationTokenRepository() {
+		return confirmationTokenRepository;
+	}
+
+	public void setConfirmationTokenRepository(ConfirmationTokenRepository confirmationTokenRepository) {
+		this.confirmationTokenRepository = confirmationTokenRepository;
+	}
+
+	public EmailSenderService getEmailSenderService() {
+		return emailSenderService;
+	}
+
+    /////////////////////////   getters/setters  /////////////////////////////////////////////
+
+	public void setEmailSenderService(EmailSenderService emailSenderService) {
+		this.emailSenderService = emailSenderService;
+	}
 }
