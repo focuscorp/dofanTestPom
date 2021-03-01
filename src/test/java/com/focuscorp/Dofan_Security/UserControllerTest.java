@@ -1,6 +1,8 @@
 package com.focuscorp.Dofan_Security;
 
+import com.focuscorp.Dofan_Security.model.ConfirmationToken;
 import com.focuscorp.Dofan_Security.model.User;
+import com.focuscorp.Dofan_Security.repository.ConfirmationTokenRepository;
 import com.focuscorp.Dofan_Security.service.UserService;
 
 import org.junit.Test;
@@ -47,7 +49,8 @@ public class UserControllerTest {
     @MockBean
     private UserService userService; 
 
- 
+    @Autowired
+    private ConfirmationTokenRepository confirmationTokenRepository;
   
 
   @Test
@@ -109,8 +112,7 @@ public void addUser_ShouldReturnError() throws Exception   {
         
     @Test
     public void deleteUser_ShouldDeleteUser() throws Exception   {
-       // userController.deleteUser("id1234", userModel);
-       //  userService.deleteById("id1234");
+      
        String id ="id1234";  
         this.mockMvc.perform(MockMvcRequestBuilders.get("/delete/"+id)
                      .param("id", id))
@@ -124,5 +126,52 @@ public void addUser_ShouldReturnError() throws Exception   {
             
                verify(userService, times(1)).deleteById(id);
     }
+
+    @Test
+    public void EditUser_ShouldUpdateUser() throws Exception   {
+       // userController.deleteUser("id1234", userModel);
+       //  userService.deleteById("id1234");
+   /*    String id ="603cc3ba4d94f9761e4a1830";  
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/edit/"+id)
+                     .param("id", id))
+                     .andDo(print()) 
+                      .andExpect(view().name("/users"))
+                      .andExpect(status().isOk());
+*/
+    }
+
+    @Test
+    public void confirmEmail_ShouldDeleteUser() throws Exception   {
+       // userController.deleteUser("id1234", userModel);
+       //  userService.deleteById("id1234");
+       ConfirmationToken confirmationToken = new ConfirmationToken(new User("user","tesnim.ksouri@focus-corporation.com","1234"));
+       confirmationTokenRepository.save(confirmationToken);
+       this.mockMvc.perform(MockMvcRequestBuilders.get("/confirm")
+                     .param("token", confirmationToken.getConfirmationToken()))
+                     .andDo(print())
+                   //  .andExpect(MockMvcResultMatchers.redirectedUrl("/users"))
+                   // . andExpect(status().isFound());
+                   .andExpect(view().name("accountVerified"))
+                   .andExpect(status().isOk());
+
+ 
+            
+              // verify(userService, times(1)).deleteById(token);
+    }
+
+    @Test
+        public void confirmEmail_ShouldReturnError() throws Exception   {
+
+        ConfirmationToken confirmationToken = new ConfirmationToken(new User("user","tesnim.ksouri@focus-corporation.com","1234"));
+
+        // null token
+
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/confirm")
+                            .param("token", confirmationToken.getConfirmationToken()))
+                            .andDo(print())
+                            .andExpect(view().name("error"))
+                            .andExpect(status().isOk());
+
+        }
 
 }
