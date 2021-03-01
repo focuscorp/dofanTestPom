@@ -2,6 +2,7 @@ package com.focuscorp.Dofan_Security;
 
 import com.focuscorp.Dofan_Security.model.User;
 import com.focuscorp.Dofan_Security.service.UserService;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -12,7 +13,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;import java.util.ArrayList;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.BDDMockito.given;
@@ -73,7 +75,7 @@ given( userService.findAllUsers()).willReturn(list);
 
   @Test
   public void addUser_ShouldAddUser() throws Exception   {
-   /*   
+      
       String sUsername ="usersmane";
       String sEmail ="tesss@gmail.com";
       String sPassword ="password";
@@ -83,9 +85,9 @@ given( userService.findAllUsers()).willReturn(list);
        .param("email", sEmail)
        .param("password", sPassword))
       .andDo(print())
-      .andExpect(MockMvcResultMatchers.redirectedUrl("/users"))
-      .andExpect(status().isFound());*/
-                        
+      .andExpect(status().isOk())
+      .andExpect(view().name("successfulUserAdding"));
+                           
 }
         
     @Test
