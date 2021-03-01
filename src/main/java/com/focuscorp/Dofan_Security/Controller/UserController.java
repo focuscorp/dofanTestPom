@@ -120,8 +120,8 @@ public class UserController {
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String  editUser(@PathVariable("id") String userId, Model model){
-        System.out.println("EDIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIITtttttt");
-        User user1=   (User)userService.findById(userId).get();
+        System.out.println("EDIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIITtttttt");
+        User user1=   (User)userService.findById(userId).get();//check from here
         model.addAttribute("EditableUser",user1 );
         System.out.println(model.getAttribute("EditableUser"));
         System.out.println(userService.findById(userId));
