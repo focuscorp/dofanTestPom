@@ -89,6 +89,23 @@ given( userService.findAllUsers()).willReturn(list);
       .andExpect(view().name("successfulUserAdding"));
                            
 }
+
+
+@Test
+public void addUser_ShouldReturnError() throws Exception   {
+    
+  String sUsername ="usersmane";
+  String sEmail ="tesnim.ksouri@focus-corporation.com";
+  String sPassword ="password";
+      
+   this.mockMvc.perform(MockMvcRequestBuilders.post("/addUser")
+   .param("username", sUsername)
+   .param("email", sEmail)
+   .param("password", sPassword))      
+   .andExpect(status().isOk())
+   .andExpect(view().name("error"));
+                         
+}
         
     @Test
     public void deleteUser_ShouldDeleteUser() throws Exception   {
