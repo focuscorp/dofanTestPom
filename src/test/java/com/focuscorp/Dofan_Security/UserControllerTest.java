@@ -128,17 +128,37 @@ public void addUser_ShouldReturnError() throws Exception   {
     }
 
     @Test
-    public void EditUser_ShouldUpdateUser() throws Exception   {
-       // userController.deleteUser("id1234", userModel);
-       //  userService.deleteById("id1234");
-   /*    String id ="603cc3ba4d94f9761e4a1830";  
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/edit/"+id)
-                     .param("id", id))
-                     .andDo(print()) 
-                      .andExpect(view().name("/users"))
-                      .andExpect(status().isOk());
-*/
+    public void EditUser_ShouldEditUser() throws Exception   {
+     // ObjectId id= new ObjectId("6034d9d37d532803877dc06a");    
+       String id ="602e58caa25fae779d8e3ffb";
+     //  Model model = ;
+     User oUser = new User("mohta","mohta@gmail.com","test12345");
+    //  model.addAttribute("EditableUser",oUser );
+         this.mockMvc.perform(MockMvcRequestBuilders.get("/edit/"+id)
+                                                    .flashAttr("EditableUser", oUser)
+                                                    .flashAttr("underTest", "true")
+                                                    .param("id", id))
+                     .andDo(print()) ;
+                    //  .andExpect(view().name("edit_user"))
+                  //   .andExpect(status().isOk());
+
     }
+
+
+    @Test
+    public void EditUser_ShouldUpdateUser() throws Exception   {
+        
+      //  String sUsername ="usersmane";
+      //  String sEmail ="tesss@gmail.com";
+       // String sPassword ="password";
+            
+         this.mockMvc.perform(MockMvcRequestBuilders.post("/edit"))
+        // .param("username", sUsername)
+         //.param("email", sEmail)
+         //.param("password", sPassword))
+        .andDo(print())
+        .andExpect(MockMvcResultMatchers.redirectedUrl("/users"))
+       .  andExpect(status().isFound());                       }
 
     @Test
     public void confirmEmail_ShouldDeleteUser() throws Exception   {

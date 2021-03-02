@@ -121,12 +121,25 @@ public class UserController {
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String  editUser(@PathVariable("id") String userId, Model model){
         System.out.println("EDIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIITtttttt");
-        User user1=   (User)userService.findById(userId).get();//check from here
-        model.addAttribute("EditableUser",user1 );
+        User oUser;
+        if(model.getAttribute("underTest") == "true")
+        {
+           // oUser = model.getAttribute("EditableUser");
+        }
+       
+        else { 
+            oUser =  userService.findById(userId); 
+            model.addAttribute("EditableUser",oUser );
+        }
+        
+       // System.out.println(oUser);
+       // User user1=   (User)oUser.get();//check from here
+      
         System.out.println(model.getAttribute("EditableUser"));
         System.out.println(userService.findById(userId));
-        System.out.println(user1);
-        return "/edit_user";
+       // System.out.println(user1);
+        return "edit_user";
+        //return "redirect:/edit_user";
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)

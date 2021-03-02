@@ -38,9 +38,9 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-    public Optional<User> findById(String id){
+    public User findById(String id){
 
-        return userRepository.findById(id);
+        return (User)userRepository.findById(id).get();
     }
     public Iterable<User> findAllUsers() {
 
