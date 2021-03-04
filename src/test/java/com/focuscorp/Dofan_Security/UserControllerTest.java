@@ -138,9 +138,9 @@ public void addUser_ShouldReturnError() throws Exception   {
                                                     .flashAttr("EditableUser", oUser)
                                                     .flashAttr("underTest", "true")
                                                     .param("id", id))
-                     .andDo(print()) ;
-                    //  .andExpect(view().name("edit_user"))
-                  //   .andExpect(status().isOk());
+                     .andDo(print()) 
+                      .andExpect(view().name("edit_user"))
+                    .andExpect(status().isOk());
 
     }
 
