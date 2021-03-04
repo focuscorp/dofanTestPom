@@ -135,10 +135,8 @@
 							<goal>report</goal>
 						</goals>
 					</execution>
-
-							
-				</plugin>
-			
+				</executions>				
+			</plugin>
         </plugins>
 	</build>
 
