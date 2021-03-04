@@ -136,12 +136,6 @@
 						</goals>
 					</execution>
 
-					<execution>
-						<id>jacoco-check</id>
-						<goals>
-							<goal>check</goal>
-						</goals>
-						<configuration>
 							
 				</plugin>
 			
