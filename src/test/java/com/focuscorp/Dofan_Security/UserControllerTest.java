@@ -52,10 +52,7 @@ public class UserControllerTest {
     @Autowired
     private ConfirmationTokenRepository confirmationTokenRepository;
   
-    @Test
-    void contextLoads() {}
-
-
+     
   @Test
   public void newUser_ShouldReturnUsers() throws Exception   {
      // userController.deleteUser("id1234", userModel);
