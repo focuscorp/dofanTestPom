@@ -17,8 +17,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -50,9 +52,13 @@ public class AuthController {
     @Autowired
     JwtUtils jwtUtils;
 
+   @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+   public String getDashboard(){
+       return "dashboard";
+   }
    // @PostMapping("/signin")
    @RequestMapping(value = "/dashboard", method = RequestMethod.POST)
-    public String authenticateUser(@Valid LoginRequest loginRequest) {
+    public String authenticateUser(@Valid LoginRequest loginRequest, Model model) {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
@@ -70,6 +76,12 @@ public class AuthController {
                 userDetails.getUsername(),
                 userDetails.getEmail(),
                 roles));*/
+       /*model.addAttribute("ConnectedUser", ResponseEntity.ok(new JwtResponse(jwt,
+               userDetails.getId(),
+               userDetails.getUsername(),
+               userDetails.getEmail(),
+               roles)));*/
+
         return "dashboard";
     }
 
@@ -146,5 +158,15 @@ public class AuthController {
 
         //return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
         return "index";
+    }
+
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    public String user(Model model,@AuthenticationPrincipal OAuth2User principal) {
+//         Collections.singletonMap("email", principal.getAttribute("email"));
+        if (principal != null) {
+            model.addAttribute("email", principal.getAttribute("email"));
+            model.addAttribute("login", principal.getAttribute("login"));
+        }
+        return "user";
     }
 }
