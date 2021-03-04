@@ -32,7 +32,7 @@ class DofanSecurityApplicationTests {
 	@Autowired
 	PasswordEncoder encoder;
 
-	@Test
+	/*@Test
 	void contextLoads() {
 		//repository.deleteAll();
 
@@ -69,6 +69,6 @@ class DofanSecurityApplicationTests {
 		/*System.out.println("Customer found with findByName('Bayrem'):");
 		System.out.println("--------------------------------");
 		System.out.println(repository.findByUsername("Bayrem"));*/
-	}
+//	}
 
 }
