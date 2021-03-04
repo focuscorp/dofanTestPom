@@ -16,7 +16,8 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-
+@RunWith(SpringRunner.class)
+@AutoConfigureMockMvc
 @SpringBootTest
 class DofanSecurityApplicationTests {
 
