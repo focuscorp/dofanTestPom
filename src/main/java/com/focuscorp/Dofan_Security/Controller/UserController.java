@@ -124,13 +124,13 @@ public class UserController {
         User oUser;
         if(model.getAttribute("underTest") == "true")
         {
-           // oUser = model.getAttribute("EditableUser");
+          
         }
        
         else { 
             oUser =  userService.findById(userId); 
             model.addAttribute("EditableUser",oUser );
-        }
+         }
         
        // System.out.println(oUser);
        // User user1=   (User)oUser.get();//check from here
