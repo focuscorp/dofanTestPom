@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
 @SpringBootTest
-public class AuthControllerTest {
+public class AuthControllerTest extends DofanSecurityApplicationTests{
 
     @Autowired
     private MockMvc mockMvc;

@@ -36,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
 @SpringBootTest
-public class UserControllerTest {
+public class UserControllerTest extends DofanSecurityApplicationTests{
 
     //private static final String MockMvcRequestBuildersUtils = new MockMvcRequestBuildersUtils();
 
