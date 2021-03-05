@@ -10,12 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.focuscorp.Dofan_Security.model.User;
 import com.focuscorp.Dofan_Security.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-
 
 @SpringBootTest
 class DofanSecurityApplicationTests {
