@@ -5,9 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
-import org.apache.log4j.Logger;
 
-@SpringBootApplication(exclude = { SecurityAutoConfiguration.class, DataSourceAutoConfiguration.class })
+//@SpringBootApplication(exclude = { SecurityAutoConfiguration.class, DataSourceAutoConfiguration.class })
+@SpringBootApplication
 public class DofanSecurityApplication {
 	public static Logger log = Logger.getLogger(DofanSecurityApplication.class);
 	public static void main(String[] args) {
