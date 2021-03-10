@@ -1,0 +1,4 @@
+2021-03-10 16:28:52,593  INFO [restartedMain] - From Info
+2021-03-10 16:28:52,608  WARN [restartedMain] - From warn
+2021-03-10 16:28:52,610 ERROR [restartedMain] - From error
+2021-03-10 16:28:52,611 FATAL [restartedMain] - From fatal
