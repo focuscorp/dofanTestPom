@@ -88,6 +88,26 @@
 			<version>0.9.1</version>
 		</dependency>
 		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>3.12.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb-log4j</artifactId>
+			<version>1.10.23.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.log4mongo</groupId>
+			<artifactId>log4mongo-java</artifactId>
+			<version>0.9.0</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
