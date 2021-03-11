@@ -10,17 +10,16 @@ import org.apache.log4j.Logger;
 @SpringBootApplication
 public class DofanSecurityApplication {
 
-    private static final Logger log = Logger.getLogger(DofanSecurityApplication.class);
+    private static final Logger logger = Logger.getLogger(DofanSecurityApplication.class);
     
 	public static void main(String[] args) {
+
+        logger.info("*********** DofanSecurityApplication class execution started ***********");
+
 		SpringApplication.run(DofanSecurityApplication.class, args);
 
-		//--- Print Msg ---
-        log.debug("From debug");
-        log.info("From Info");
-        log.warn("From warn");
-        log.error("From error");
-        log.fatal("From fatal");
+        logger.info("*********** DofanSecurityApplication execution finished ***********");
+
 	}
 
 }
