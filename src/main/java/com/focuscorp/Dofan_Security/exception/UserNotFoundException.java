@@ -1,11 +1,10 @@
 package com.focuscorp.Dofan_Security.exception;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 
 public class UserNotFoundException extends Exception {
 
-    private static final Logger logger = LogManager.getLogger(UserNotFoundException.class);
+    private static final Logger logger = Logger.getLogger(UserNotFoundException.class);
 
     public UserNotFoundException() {
         super();

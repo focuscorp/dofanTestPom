@@ -1,7 +1,6 @@
 package com.focuscorp.Dofan_Security.exception;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,7 +13,7 @@ import java.util.Date;
 @ControllerAdvice
 public class UserExceptionHandler {
 
-    private static final Logger logger = LogManager.getLogger(UserExceptionHandler.class);
+    private static final Logger logger = Logger.getLogger(UserExceptionHandler.class);
 
     @ExceptionHandler(value = UserNotFoundException.class)
     public ResponseEntity<UserError> noUserHandler(UserNotFoundException ex) {

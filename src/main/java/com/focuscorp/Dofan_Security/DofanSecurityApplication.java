@@ -19,7 +19,12 @@ public class DofanSecurityApplication {
 		SpringApplication.run(DofanSecurityApplication.class, args);
 
         logger.info("*********** DofanSecurityApplication execution finished ***********");
-
+        System.out.println("_____    _______   _______  _______");
+        System.out.println("|    )  |       | |        |       |  |  |      |");
+        System.out.println("|     ) |       | |_______ |       |  |   |     |");
+        System.out.println("|     ) |       | |        |       |  |     |   |");
+        System.out.println("|     ) |       | |        |       |  |       | |");
+        System.out.println("|____)  |_______| |        |_______|  |         |");
 	}
 
 }
