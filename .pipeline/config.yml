@@ -6,5 +6,8 @@ general:
   gitSshKeyCredentialsId: 1103b590-2c79-48bc-a5be-ff2272e78840
   buildTool: 'maven'
 steps:
+  dockerExecuteOnKubernetes:
+    containerPullImageFlags:
+      's4sdk/docker-node-browsers': true
   mavenExecute:
     dockerImage: maven:3.6.3-jdk-11-slim
