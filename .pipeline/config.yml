@@ -1,5 +1,6 @@
 general:
   buildTool: 'maven'
   
-mavenExecute:
+steps:
+  mavenExecute:
     dockerImage: maven:3.6.3-jdk-11-slim
