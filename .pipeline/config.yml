@@ -1,13 +1,37 @@
 general:
   productiveBranch: 'main'
+  collectTelemetryData: false
+  xMake:
+    buildQuality: 'Milestone'
+    novaCredentialsId: 'xmakeNova'
   maven:
     projectSettingsFile : '.pipeline/settings.xml'
-  gitCredentialsId: 1103b590-2c79-48bc-a5be-ff2272e78840
-  gitSshKeyCredentialsId: 1103b590-2c79-48bc-a5be-ff2272e78840
+  gitCredentialsId: 'SHA256:IXIvax2XosAQi9monapSa6Ys0pLgx/k74EOYuaPQ7zM'
+  gitSshKeyCredentialsId: 'SHA256:IXIvax2XosAQi9monapSa6Ys0pLgx/k74EOYuaPQ7zM '
   buildTool: 'maven'
+  
 steps:
+ dockerExecuteOnKubernetes:
+    containerPullImageFlags:
+      's4sdk/docker-node-browsers': true
+ 
+ mavenExecute:
+    dockerImage: maven:3.6.3-jdk-11-slim
+    
  artifactPrepareVersion:
    buildTool: 'maven'
    script: this
- buildExecute: 
-   script: this
+
+mavenBuild:
+    script: this
+
+stages:
+  frontendUnitTests:
+    dockerImage: ppiper/node-browsers
+
+  frontendIntegrationTests:
+    dockerImage: ppiper/node-browsers
+    
+postActions:
+  sendNotification:
+    skipFeatureBranches: false
