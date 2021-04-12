@@ -8,3 +8,6 @@ general:
 steps:
   buildExecute: 
     script: this
+  artifactPrepareVersion:
+    buildTool: 'maven'
+    script: this
