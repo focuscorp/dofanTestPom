@@ -2,7 +2,8 @@ general:
   productiveBranch: 'main'
   maven:
     projectSettingsFile : '.pipeline/settings.xml'
-  gitCredentialsId: 1103b590-2c79-48bc-a5be-ff2272e78840
-  gitSshKeyCredentialsId: 1103b590-2c79-48bc-a5be-ff2272e78840
+  gitCredentialsId: '1103b590-2c79-48bc-a5be-ff2272e78840'
+  gitSshKeyCredentialsId: '1103b590-2c79-48bc-a5be-ff2272e78840'
+  buildTool: 'maven'
 steps:
   buildExecute script:this, buildTool: 'maven'
