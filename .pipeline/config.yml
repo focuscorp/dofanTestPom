@@ -6,8 +6,8 @@ general:
   gitSshKeyCredentialsId: 1103b590-2c79-48bc-a5be-ff2272e78840
   buildTool: 'maven'
 steps:
-  buildExecute: 
-    script: this
-  artifactPrepareVersion:
-    buildTool: 'maven'
-    script: this
+ artifactPrepareVersion:
+   buildTool: 'maven'
+   script: this
+ buildExecute: 
+   script: this
