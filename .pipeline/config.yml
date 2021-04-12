@@ -1,6 +1,7 @@
 general:
   buildTool: 'maven'
-  
+  gitCredentialsId: 62b2c69a-9615-4e8b-b4c9-f21c9a2a9150
+  gitSshKeyCredentialsId: 62b2c69a-9615-4e8b-b4c9-f21c9a2a9150
 steps:
   mavenExecute:
     dockerImage: maven:3.6.3-jdk-11-slim
