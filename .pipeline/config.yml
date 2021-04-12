@@ -1,7 +1,7 @@
 general:
   productiveBranch: 'main'
   maven:
-    projectSettingsFile : 'settings.xml'
+    projectSettingsFile : '.pipeline/settings.xml'
   gitCredentialsId: 1103b590-2c79-48bc-a5be-ff2272e78840
   gitSshKeyCredentialsId: 1103b590-2c79-48bc-a5be-ff2272e78840
   buildTool: 'maven'
