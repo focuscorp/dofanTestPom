@@ -4,9 +4,5 @@ general:
     projectSettingsFile : '.pipeline/settings.xml'
   gitCredentialsId: 1103b590-2c79-48bc-a5be-ff2272e78840
   gitSshKeyCredentialsId: 1103b590-2c79-48bc-a5be-ff2272e78840
-  buildTool: 'maven'
 steps:
-  dockerExecute:
-    script: this
-  mavenExecute:
-    dockerImage: maven:3.6.3-jdk-11-slim
+  buildExecute script:this, buildTool: 'maven'
