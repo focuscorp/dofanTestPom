@@ -10,15 +10,18 @@ node() {
        setupCommonPipelineEnvironment script:this
        
     }
-/*stage('build') {
-    mavenBuild script: this
-}*/
+   
+   stage('build') {
+      mavenBuild script: this
+   }
+   
    stage('Pull-Request Voting') {
       buildTool: 'kaniko'
       script: this
    }
-   stage('Confirm'){
-   script: this
-   }
+   
+   /*stage('Confirm'){
+      script: this
+   }*/
   
 }
