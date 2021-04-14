@@ -32,9 +32,9 @@ nexusUpload:
     
 cloudFoundryDeploy:
     cloudFoundry:
-      org: '35ba65d0-f317-424f-bfc0-8f3fcc24781a'
+      org: '5955a6d8trial'
       space: 'dev'
-      credentialsId: 'CF_CREDENTIALSID'
+      credentialsId: 'e177a86e-719a-43d0-bfa3-742ed56c94b0'
       apiEndpoint: 'https://api.cf.us10.hana.ondemand.com'
       
 stages:
