@@ -1,6 +1,5 @@
 @Library('piper-lib-os') _
 
-nexusUpload script: this
 //piperPipeline script: this
 
 node() {
@@ -21,6 +20,9 @@ node() {
       script: this
    }
    
+   stage('nexusUpload'){
+       script: this
+   }
    /*stage('Confirm'){
       script: this
    }*/
