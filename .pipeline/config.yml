@@ -31,12 +31,11 @@ nexusUpload:
     url: http://artefact.focus.com.tn:8081/repository/maven-public/
     
 cloudFoundryDeploy:
-    deployTool: 'mtaDeployPlugin'
-    deployType: 'standard'
     cloudFoundry:
       org: '35ba65d0-f317-424f-bfc0-8f3fcc24781a'
       space: 'dev'
       credentialsId: 'CF_CREDENTIALSID'
+      apiEndpoint: 'https://api.cf.us10.hana.ondemand.com'
       
 stages:
   checksPublishResults:
