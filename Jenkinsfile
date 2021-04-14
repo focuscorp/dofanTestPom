@@ -1,33 +1,32 @@
 @Library('piper-lib-os') _
 
-piperPipeline script: this
+//piperPipeline script: this
 
-/*node() {
+node() {
    
-    stage('prepare') {
+    stage('init') {
        //cleanWs()
        checkout scm
        setupCommonPipelineEnvironment script:this
        
     }
    
-   stage('init'){
+   /*stage('init'){
       buildTool: 'maven'
       script: this
-   }
-   
-   stage('build') {
-      mavenBuild script: this
-   }
+   }*/
    
    stage('Pull-Request Voting') {
       buildTool: 'kaniko'
       script: this
    }
+   stage('build') {
+      mavenBuild script: this
+   }
    
    
    /*stage('Confirm'){
       script: this
-   }
+   }*/
   
-}*/
+}
