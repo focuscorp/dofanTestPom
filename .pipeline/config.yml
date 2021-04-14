@@ -20,7 +20,7 @@ steps:
  
 artifactPrepareVersion:
     versioningType: 'cloud'
-    gitHttpsCredentialsId: 'SHA256:IXIvax2XosAQi9monapSa6Ys0pLgx/k74EOYuaPQ7zM'
+    gitSshKeyCredentialsId: 'SHA256:IXIvax2XosAQi9monapSa6Ys0pLgx/k74EOYuaPQ7zM'
     
 mavenBuild:
     script: this
