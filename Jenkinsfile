@@ -11,6 +11,10 @@ node() {
        
     }
    
+   stage('nexusUpload'){
+       script: this
+   }
+   
    stage('build') {
       mavenBuild script: this
    }
@@ -20,9 +24,7 @@ node() {
       script: this
    }
    
-   stage('nexusUpload'){
-       script: this
-   }
+   
    /*stage('Confirm'){
       script: this
    }*/
