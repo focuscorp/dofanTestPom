@@ -4,15 +4,16 @@
 
 node() {
    
-    stage('prepare') {
+    /*stage('prepare') {
        //cleanWs()
        checkout scm
        setupCommonPipelineEnvironment script:this
        
-    }
+    }*/
    
-   stage('nexusUpload'){
-       script: this
+   stage('init'){
+      buildTool: 'maven'
+      script: this
    }
    
    stage('build') {
