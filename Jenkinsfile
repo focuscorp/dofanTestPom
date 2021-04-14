@@ -1,10 +1,9 @@
-@Library('piper-lib-os')
+@Library('piper-lib-os') _
 
 nexusUpload script: this
 //piperPipeline script: this
 
-
-/*node() {
+node() {
    
     stage('prepare') {
        //cleanWs()
@@ -24,6 +23,6 @@ nexusUpload script: this
    
    /*stage('Confirm'){
       script: this
-   }
+   }*/
   
-}*/
+}
