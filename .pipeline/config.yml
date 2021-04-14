@@ -30,6 +30,9 @@ nexusUpload:
     url: http://artefact.focus.com.tn:8081/repository/maven-public/
     
 stages:
+  checksPublishResults:
+    script: this
+    
   frontendUnitTests:
     dockerImage: ppiper/node-browsers
 
