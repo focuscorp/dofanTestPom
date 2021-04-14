@@ -1,7 +1,8 @@
-@Library('piper-lib-os') _
+@Library('piper-lib-os')
 
-//piperPipeline script: this
 nexusUpload script: this
+//piperPipeline script: this
+
 
 /*node() {
    
