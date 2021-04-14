@@ -24,7 +24,11 @@ steps:
 
 mavenBuild:
     script: this
-
+    
+nexusUpload:
+    script: this
+    url: http://artefact.focus.com.tn:8081/repository/maven-public/
+    
 stages:
   frontendUnitTests:
     dockerImage: ppiper/node-browsers
