@@ -24,6 +24,9 @@ node() {
       mavenBuild script: this
    }
    
+   stage('deploy') {
+    cloudFoundryDeploy script: this
+}
    
    /*stage('Confirm'){
       script: this
