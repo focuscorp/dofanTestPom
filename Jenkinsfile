@@ -1,8 +1,8 @@
 @Library('piper-lib-os') _
 
-//piperPipeline script: this
+piperPipeline script: this
 
-node() {
+/*node() {
    
     stage('prepare') {
        //cleanWs()
@@ -28,6 +28,6 @@ node() {
    
    /*stage('Confirm'){
       script: this
-   }*/
+   }
   
-}
+}*/
