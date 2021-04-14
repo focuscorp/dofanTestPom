@@ -4,15 +4,15 @@
 
 node() {
    
-    /*stage('prepare') {
+    stage('prepare') {
        //cleanWs()
        checkout scm
        setupCommonPipelineEnvironment script:this
        
-    }*/
+    }
    
    stage('init'){
-      buildTool: 'maven'
+      buildTool maven
       script: this
    }
    
@@ -21,7 +21,7 @@ node() {
    }
    
    stage('Pull-Request Voting') {
-      buildTool: 'kaniko'
+      buildTool kaniko
       script: this
    }
    
