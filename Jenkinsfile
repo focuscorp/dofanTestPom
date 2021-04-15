@@ -23,9 +23,8 @@ node() {
    stage('deploy') {
       cloudFoundryDeploy(
          script: this,
-         cloudFoundry: [apiEndpoint: 'https://api.cf.eu10.hana.ondemand.com', org: '5955a6d8trial', space: 'dev', credentialsId: 'CF_NadimCredential'],
-         deployTool: 'cf_native',
-         deployType: 'standard')
+         cloudFoundry: [apiEndpoint: 'https://api.cf.eu10.hana.ondemand.com', org: '5955a6d8trial', space: 'dev', credentialsId: 'CF_NadimCredential']
+         )
    }
   
 }
