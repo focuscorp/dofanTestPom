@@ -13,7 +13,7 @@ general:
 steps:
   dockerExecuteOnKubernetes:
     containerPullImageFlags:
-      "s4sdk/docker-node-browsers": true
+      's4sdk/docker-node-browsers': true
 
   mavenExecute:
     dockerImage: maven:3.6.3-jdk-11-slim
@@ -32,9 +32,12 @@ nexusUpload:
 
 cloudFoundryDeploy:
   cloudFoundry:
-    org: '5955a6d8trial'
-    space: 'dev'
-    credentialsId: 'CF_NadimCredential'
+    #org: '5955a6d8trial'
+    #space: 'dev'
+    #credentialsId: 'CF_NadimCredential'
+    org: Focus Corporation
+    space: Focus Corporation
+    credentialsId: CF_Suser
 
 stages:
   checksPublishResults:
