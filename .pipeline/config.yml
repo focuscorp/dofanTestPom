@@ -31,13 +31,11 @@ nexusUpload:
     url: http://artefact.focus.com.tn:8081/repository/maven-public/
     
 cloudFoundryDeploy:
-    cloudFoundry:
-      apiEndpoint: 'https://api.cf.eu10.hana.ondemand.com'
-      org: '5955a6d8trial'
-      space: 'dev'
-      credentialsId: 'CF_NadimCredential'
-      
-      
+  cloudFoundry:
+    org: '5955a6d8trial'
+    space: 'dev'
+    credentialsId: 'CF_NadimCredential'
+
 stages:
   checksPublishResults:
     script: this
