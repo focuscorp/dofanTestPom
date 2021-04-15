@@ -26,6 +26,9 @@ node() {
    
    stage('deploy') {
     cloudFoundryDeploy script: this
+     org: '5955a6d8trial'
+     space: 'dev'
+     credentialsId: 'CF_NadimCredential'
 }
    
    /*stage('Confirm'){
