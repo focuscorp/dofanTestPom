@@ -23,7 +23,7 @@ node() {
    stage('deploy') {
       cloudFoundryDeploy(
          script: this,
-         cloudFoundry: [apiEndpoint: 'https://api.cf.eu10.hana.ondemand.com', appName: 'Dofan_Security', manifest: 'manifest', org: '5955a6d8trial', space: 'dev', credentialsId: 'CF_NadimCredential']
+         cloudFoundry: [apiEndpoint: 'https://api.cf.eu10.hana.ondemand.com', appName: 'dofansecurity', manifest: 'manifest', org: '5955a6d8trial', space: 'dev', credentialsId: 'CF_NadimCredential']
          )
    }
  
