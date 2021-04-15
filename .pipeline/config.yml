@@ -32,9 +32,9 @@ nexusUpload:
     
 cloudFoundryDeploy:
   cloudFoundry:
-    org: '5955a6d8trial'
-    space: 'dev'
-    credentialsId: 'CF_NadimCredential'
+    org: 'Focus Corporation'
+    space: 'Focus Corporation'
+    credentialsId: 'CF_Suser'
 
 stages:
   checksPublishResults:
