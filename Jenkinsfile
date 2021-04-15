@@ -5,7 +5,7 @@
 node() {
    
     stage('init') {
-       //cleanWs()
+       cleanWs()
        checkout scm
        setupCommonPipelineEnvironment script:this
        
