@@ -22,6 +22,7 @@ node() {
    }
    stage('build') {
       mavenBuild script: this
+      cloudFoundryDeploy script: this
    }
    
    stage('deploy') {
