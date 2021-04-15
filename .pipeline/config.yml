@@ -31,12 +31,10 @@ nexusUpload:
     url: http://artefact.focus.com.tn:8081/repository/maven-public/
     
 cloudFoundryDeploy:
-    deployTool: 'mtaDeployPlugin'
-    deployType: 'standard'
     cloudFoundry:
       org: '5955a6d8trial'
       space: 'dev'
-      credentialsId: 'e177a86e-719a-43d0-bfa3-742ed56c94b0'
+      credentialsId: 'CF_NadimCredential'
       
 stages:
   checksPublishResults:
