@@ -12,8 +12,8 @@ node() {
     }
    
    stage('Pull-Request Voting') {
-      buildTool: 'kaniko'
       script: this
+      mavenExecuteStaticCodeChecks script: this
    }
    
    stage('build') {
