@@ -20,7 +20,7 @@ node() {
       ) */
       mavenExecute(
          script: this,
-         goals: 'pmd:pmd'
+         goals: ['pmd:pmd']
       )
        checksPublishResults(
         script: this,
