@@ -21,7 +21,7 @@ node() {
       mavenExecute(
          script: this,
          goals: 'pmd:pmd'
-      
+      )
        checksPublishResults(
         script: this,
         // publish java results from pmd, cpd, checkstyle & findbugs
