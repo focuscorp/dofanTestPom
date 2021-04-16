@@ -11,6 +11,15 @@ node() {
        
     }
    
+   stage('Pull-Request Voting') {
+     checksPublishResults(
+    tasks: true,
+    pmd: [pattern: '**/target/pmd-results.xml', qualityGates: [[threshold: 101, type: 'TOTAL_LOW', unstable: true]]],
+    archive: true
+)
+   }
+  
+   
     /*stage('Pull-Request Voting') {
       mavenExecuteStaticCodeChecks(
          script: this,
