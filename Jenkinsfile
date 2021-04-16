@@ -13,10 +13,12 @@ node() {
    
    stage('Pull-Request Voting') {
      checksPublishResults(
+        // publish java results from pmd, cpd, checkstyle & findbugs
+    pmd: true, cpd: true, findbugs: true, checkstyle: true,
     tasks: true,
     pmd: [pattern: '**/target/pmd-results.xml', qualityGates: [[threshold: 101, type: 'TOTAL_LOW', unstable: true]]],
     archive: true
-)
+      )
    }
   
    
