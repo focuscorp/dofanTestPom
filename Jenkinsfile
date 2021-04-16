@@ -15,7 +15,7 @@ node() {
       mavenExecuteStaticCodeChecks(
          script: this,
          pmd: [maxAllowedViolations: 50],
-         spotBugs: false)
+         spotBugs: [spotBugs: false])
    }
    
    stage('build') {
