@@ -11,15 +11,15 @@ node() {
        
     }
    
+   stage('build') {
+      mavenBuild script: this
+   }
+   
    stage('Pull-Request Voting') {
       mavenExecuteStaticCodeChecks(
          script: this,
          pmd: [maxAllowedViolations: 50]
       )
-   }
-   
-   stage('build') {
-      mavenBuild script: this
    }
    
    stage('Additional Unit Tests'){
