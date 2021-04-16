@@ -1,7 +1,6 @@
 ---
 applications:
 - name: Dofan_Security
-  path: .
   buildpack: java_buildpack
   instance: 1
   memory: 128M
