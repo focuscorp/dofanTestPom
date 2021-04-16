@@ -15,7 +15,9 @@ node() {
       mavenExecuteStaticCodeChecks(
          script: this,
          pmd: [maxAllowedViolations: 50],
-         spotBugs: false)
+         spotBugs: false,
+         step([$class: 'PmdPublisher', pattern: '**/target/pmd.xml'])
+      )
    }
    
    stage('build') {
