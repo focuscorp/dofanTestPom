@@ -4,4 +4,4 @@ applications:
   buildpack: java_buildpack
   instance: 1
   memory: 128M
-  Main_Class: DofanSecurityApplication.java
+  Main-Class: DofanSecurityApplication.java
