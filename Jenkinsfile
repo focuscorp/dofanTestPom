@@ -23,12 +23,12 @@ node() {
    }
   
    stage('Additional Unit Tests'){
-      script: this
+      karmaExecuteTests script: this
    }
    
-    stage('Integration') {
+   /* stage('Integration') {
       mavenExecuteIntegration script: this
-   }
+   }*/
    
    /*stage('deploy') {
       deployType: 'standard'
