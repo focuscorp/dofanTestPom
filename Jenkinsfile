@@ -27,16 +27,16 @@ node() {
       )
    }*/
    
-   stage('build') {
+   /*stage('build') {
       mavenBuild script: this
-   }
+   }*/
   
-   stage('Additional Unit Tests'){
+   /*stage('Additional Unit Tests'){
       // publish test results with coverage
-      testsPublishResults(
-         jacoco: [pattern: '**/target/*.exec']
-      )
-   }
+      testsPublishResults(*/
+        // jacoco: [pattern: '**/target/*.exec']
+    /*  )
+   }*/
    
    /* stage('Integration') {
       mavenExecuteIntegration script: this
