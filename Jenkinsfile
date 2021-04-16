@@ -14,7 +14,7 @@ node() {
    stage('Pull-Request Voting') {
       mavenExecuteStaticCodeChecks(
          script: this,
-         pmd: false,
+         //pmd: false,
          //[maxAllowedViolations: 50],
          spotBugs: [spotBugs: false])
    }
