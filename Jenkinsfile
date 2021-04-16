@@ -24,7 +24,8 @@ node() {
       cloudFoundryDeploy(
          script: this,
          cloudFoundry: [apiEndpoint: 'https://api.cf.eu10.hana.ondemand.com', appName: 'dofansecurity', manifest: 'manifest', org: '5955a6d8trial', space: 'dev', credentialsId: 'CF_NadimCredential']
-         )
+         sh 'cf push dofansecurity -p target/Dofan_Security-0.0.1-SNAPSHOT.jar'
+      )
    }
  
    
