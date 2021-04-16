@@ -5,3 +5,4 @@ applications:
   instance: 1
   memory: 128M
   Main-Class: DofanSecurityApplication.java
+  stack: windows
