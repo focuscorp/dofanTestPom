@@ -20,13 +20,14 @@ node() {
       ) */
       mavenExecute(
          script: this,
-         goals: ['pmd:pmd']
+         goals: ['findbugs:findbugs']
       )
        checksPublishResults(
         script: this,
         // publish java results from pmd, cpd, checkstyle & findbugs
         //pmd: true, cpd: true, findbugs: true, checkstyle: true,
-         pmd: [pattern: '**/target/pmd.xml', qualityGates: [[threshold: 101, type: 'TOTAL_LOW', unstable: true]]],
+         //pmd: [pattern: '**/target/pmd.xml', qualityGates: [[threshold: 101, type: 'TOTAL_LOW', unstable: true]]],
+          findbugs: [pattern: '**/target/findbugsXml.xml'],
         tasks: true,
         archive: true
       )
