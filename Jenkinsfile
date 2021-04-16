@@ -12,10 +12,7 @@ node() {
     }
    
    stage('Pull-Request Voting') {
-      mavenExecuteStaticCodeChecks(
-         script: this,
-         pmd: true, cpd: true, findbugs: true, checkstyle: true, spotbugs: false,
-         checksPublishResults(
+      checksPublishResults(
         script: this,
         // publish java results from pmd, cpd, checkstyle & findbugs
         //pmd: true, cpd: true, findbugs: true, checkstyle: true,
@@ -23,9 +20,11 @@ node() {
         tasks: true,
         archive: true
       )
-      )
-     
-      
+      mavenExecuteStaticCodeChecks(
+         script: this,
+         pmd: true, cpd: true, findbugs: true, checkstyle: true, spotbugs: false,
+         
+      ) 
    }
   
    
