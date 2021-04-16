@@ -4,3 +4,4 @@ applications:
   buildpack: java_buildpack
   instance: 1
   memory: 128M
+  Main_Class: ./src/main/java/com/focuscorp/Dofan_Security/DofanSecurityApplication.java
