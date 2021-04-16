@@ -23,7 +23,10 @@ node() {
    }
   
    stage('Additional Unit Tests'){
-      karmaExecuteTests script: this
+      // publish test results with coverage
+      testsPublishResults(
+         jacoco: [pattern: '**/target/*.exec']
+      )
    }
    
    /* stage('Integration') {
