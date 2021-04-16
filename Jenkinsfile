@@ -13,11 +13,14 @@ node() {
    
    stage('Pull-Request Voting') {
      
-      mavenExecuteStaticCodeChecks(
+     /* mavenExecuteStaticCodeChecks(
          script: this,
          pmd: true, cpd: true, findbugs: true, checkstyle: true, spotbugs: false,
          
-      ) 
+      ) */
+      mavenExecute(
+         script: this,
+         goals: 'pmd:pmd'
       
        checksPublishResults(
         script: this,
