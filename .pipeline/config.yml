@@ -30,9 +30,6 @@ nexusUpload:
   script: this
   url: http://artefact.focus.com.tn:8081/repository/maven-public/
 
-#cloudFoundryDeploy:
-#    dockerImage: 'docker.wdf.sap.corp:50000/cf-cli-mta-plugin/cf-cli-mta-plugin'
-#    dockerWorkspace: '/home/piper'
 cloudFoundryDeploy:
   cloudFoundry:
     org: '5955a6d8trial'
@@ -43,9 +40,6 @@ cloudFoundryDeploy:
     credentialsId: CF_Suser
 
 stages:
-  checksPublishResults:
-    script: this
-
   frontendUnitTests:
     dockerImage: ppiper/node-browsers
 
