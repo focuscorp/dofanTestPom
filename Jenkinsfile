@@ -50,7 +50,8 @@ node() {
          script: this,
          username: 'nexus_manvenuser',
          password: 'nexus_manvenuser',
-         nexus: [mavenRepository: 'maven-public', url: 'http://artefact.focus.com.tn:8081', username: 'nexus_manvenuser', password: 'nexus_manvenuser', nexusCredentialsId: 'nexus_manvenuser'])
+         nexus: [mavenRepository: 'nexus', url: 'http://artefact.focus.com.tn:8081', username: 'nexus_manvenuser', password: 'nexus_manvenuser', nexusCredentialsId: 'nexus_manvenuser'])
+         //nexus: [mavenRepository: 'maven-public', url: 'http://artefact.focus.com.tn:8081', username: 'nexus_manvenuser', password: 'nexus_manvenuser', nexusCredentialsId: 'nexus_manvenuser'])
    }
    /*stage('Additional Unit Tests'){
       // publish test results with coverage
