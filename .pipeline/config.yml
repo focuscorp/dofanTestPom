@@ -29,6 +29,8 @@ mavenBuild:
 nexusUpload:
   script: this
   url: http://artefact.focus.com.tn:8081/repository/maven-public/
+  nexus:
+    nexusCredentialsId: 'nexus_manvenuser'
 
 cloudFoundryDeploy:
   cloudFoundry:
