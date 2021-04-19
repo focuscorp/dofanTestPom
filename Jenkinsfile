@@ -50,7 +50,6 @@ node() {
          script: this,
          username: 'nexus_manvenuser',
          password: 'nexus_manvenuser',
-         globalSettingsFile: '.pipeline/settings.xml',
          nexus: [mavenRepository: 'maven-public', url: 'http://artefact.focus.com.tn:8081', username: 'nexus_manvenuser', password: 'nexus_manvenuser', nexusCredentialsId: 'nexus_manvenuser'])
    }
    /*stage('Additional Unit Tests'){
