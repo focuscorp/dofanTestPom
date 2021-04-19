@@ -42,7 +42,11 @@ node() {
    }*/
    
    stage('build') {
-      mavenBuild script: this
+      mavenExecute(
+         script: this,
+         goals: ['deploy']
+      )
+     // mavenBuild script: this
    }
   
   
@@ -57,7 +61,7 @@ node() {
       mavenExecuteIntegration script: this
    }*/
    
-   stage('deploy') {
+ /*  stage('deploy') {
       deployType: 'standard'
       deployTool: 'cf_native'
       cloudFoundryDeploy(
@@ -72,7 +76,7 @@ node() {
          username: 'nexus_manvenuser',
          password: 'nexus_manvenuser',
          nexus: [mavenRepository: 'maven-public', url: 'http://artefact.focus.com.tn:8081', username: 'nexus_manvenuser', password: 'nexus_manvenuser', nexusCredentialsId: 'nexus_manvenuser'])
-   }
+   }*/
  
    
 }
