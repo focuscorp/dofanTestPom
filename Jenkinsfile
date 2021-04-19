@@ -48,7 +48,7 @@ node() {
    stage('nexusUpload'){
       nexusUpload(
          script: this,
-         nexus: [mavenRepository: 'maven-snapshots', url: 'http://artefact.focus.com.tn:8081', nexusCredentialsId: 'nexus_manvenuser'])
+         nexus: [mavenRepository: 'maven-public', url: 'http://artefact.focus.com.tn:8081', nexusCredentialsId: 'nexus_manvenuser'])
    }
    /*stage('Additional Unit Tests'){
       // publish test results with coverage
