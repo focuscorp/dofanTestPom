@@ -11,27 +11,27 @@ node() {
        
     }
    
-   stage('Pull-Request Voting') {
+   /*stage('Pull-Request Voting') {
      
      /* mavenExecuteStaticCodeChecks(
          script: this,
          pmd: true, cpd: true, findbugs: true, checkstyle: true, spotbugs: false,
          
       ) */
-      mavenExecute(
+     /* mavenExecute(
          script: this,
          goals: ['checkstyle:checkstyle']
       )
        checksPublishResults(
         script: this,
         // publish java results from pmd, cpd, checkstyle & findbugs
-        //pmd: true, cpd: true, findbugs: true, checkstyle: true,
+        //pmd: true, cpd: true, findbugs: true, checkstyle: true,*/
          //pmd: [pattern: '**/target/pmd.xml', qualityGates: [[threshold: 101, type: 'TOTAL_LOW', unstable: true]]],
-          checkstyle: [pattern: '**/target/checkstyle-result.xml'],
-        tasks: true,
+       //   checkstyle: [pattern: '**/target/checkstyle-result.xml'],
+     /*   tasks: true,
         archive: true
       )
-   }
+   }*/
   
    
     /*stage('Pull-Request Voting') {
@@ -41,9 +41,9 @@ node() {
       )
    }*/
    
-   /*stage('build') {
+   stage('build') {
       mavenBuild script: this
-   }*/
+   }
   
    /*stage('Additional Unit Tests'){
       // publish test results with coverage
