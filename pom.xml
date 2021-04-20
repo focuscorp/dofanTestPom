@@ -199,7 +199,7 @@
 					</execution>
 				</executions>				
 			</plugin>
-    		<plugin>
+    		       <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
@@ -208,6 +208,15 @@
 					</includes>
 				</configuration>
 			</plugin>
+			 
+			   
+			      <plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>3.0.6-SNAPSHOT</version>
+			      </plugin>
+			  
+			  
 
         </plugins>
 	</build>
@@ -227,13 +236,5 @@
 		  <url>http://artefact.focus.com.tn:8081/repository/maven-releases/</url>
 		</repository>
 	  </distributionManagement>
-	 <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>findbugs-maven-plugin</artifactId>
-        <version>3.0.6-SNAPSHOT</version>
-      </plugin>
-    </plugins>
-  </reporting>
+	
 </project>
