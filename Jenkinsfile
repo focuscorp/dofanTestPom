@@ -13,12 +13,12 @@ node() {
    
    stage('Pull-Request Voting') {
      
-      mavenExecuteStaticCodeChecks(
+    /*  mavenExecuteStaticCodeChecks(
          script: this,
          pmd: true
          
-   )
-   /*   mavenExecute(
+   )*/
+      mavenExecute(
          script: this,
          goals: ['findbugs:findbugs']
       )
@@ -31,7 +31,7 @@ node() {
        //   checkstyle: [pattern: '**/target/checkstyle-result.xml'],
      //  tasks: true,
        // archive: true
-    //  )
+      )
    }
   
    
