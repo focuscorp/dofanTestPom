@@ -227,4 +227,13 @@
 		  <url>http://artefact.focus.com.tn:8081/repository/maven-releases/</url>
 		</repository>
 	  </distributionManagement>
+	 <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>findbugs-maven-plugin</artifactId>
+        <version>3.0.6-SNAPSHOT</version>
+      </plugin>
+    </plugins>
+  </reporting>
 </project>
