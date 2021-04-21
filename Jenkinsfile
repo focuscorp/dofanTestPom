@@ -66,9 +66,9 @@ node() {
     /*  )
    }*/
    
-   /* stage('Integration') {
+    stage('Integration') {
       mavenExecuteIntegration script: this
-   }*/
+   }
    
  /*  stage('deploy') {
       deployType: 'standard'
