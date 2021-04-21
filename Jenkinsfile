@@ -33,7 +33,7 @@ node() {
    stage('build') {
       mavenExecute(
          script: this,
-         goals: ['-Dmaven.test.skip install']
+         goals: ['install']
       )
    }
       
