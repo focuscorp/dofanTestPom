@@ -43,7 +43,8 @@ node() {
        goals: ['test'],
        // publish test results with coverage
        testsPublishResults(
-       jacoco: [pattern: '**/target/*.exec']
+         script: this,
+         jacoco: true
         )
       )
    }
