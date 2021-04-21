@@ -22,16 +22,12 @@ node() {
          script: this,
          goals: ['findbugs:findbugs','pmd:pmd','checkstyle:checkstyle']
       )
-      /*checksPublishResults(
+      checksPublishResults(
         script: this,
         findbugs:true
         // publish java results from pmd, cpd, checkstyle & findbugs
-        //pmd: true, cpd: true, findbugs: true, checkstyle: true,*/
-         //pmd: [pattern: '**/target/pmd.xml', qualityGates: [[threshold: 101, type: 'TOTAL_LOW', unstable: true]]],
-       //   checkstyle: [pattern: '**/target/checkstyle-result.xml'],
-     //  tasks: true,
-       // archive: true
-     // )
+        pmd: true, findbugs: true, checkstyle: true
+      )
    }
   
    
