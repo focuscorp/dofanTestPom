@@ -40,12 +40,12 @@ node() {
    stage('Unit tests') {
    mavenExecute(
        script: this,
-       goals: ['test'],
+       goals: ['test']
        // publish test results with coverage
-       testsPublishResults(
+        )
+      testsPublishResults(
          script: this,
          jacoco: true
-        )
       )
    }
    
