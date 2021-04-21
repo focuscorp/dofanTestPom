@@ -49,12 +49,12 @@ node() {
       )
    }
    
-/*  stage('nexusUpload') {
+   stage('nexusUpload') {
       mavenExecute(
          script: this,
          goals: ['deploy']
       )
-  }*/
+  }
    
    
   
