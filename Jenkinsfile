@@ -31,7 +31,7 @@ node() {
        //   checkstyle: [pattern: '**/target/checkstyle-result.xml'],
      //  tasks: true,
        // archive: true
-      )
+     // )
    }
   
    
