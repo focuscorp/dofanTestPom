@@ -30,7 +30,7 @@ node() {
    }
   
    
-   stage('build') {
+/*   stage('build') {
       mavenExecute(
          script: this,
          goals: ['install']
@@ -54,17 +54,11 @@ node() {
          script: this,
          goals: ['deploy']
       )
-  }
+  }*/
    
    
   
-  
-   /*stage('Additional Unit Tests'){
-      // publish test results with coverage
-      testsPublishResults(*/
-        // jacoco: [pattern: '**/target/*.exec']
-    /*  )
-   }*/
+ 
    
     stage('Integration') {
       mavenExecuteIntegration script: this
