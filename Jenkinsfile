@@ -24,7 +24,6 @@ node() {
       )
       checksPublishResults(
         script: this,
-        findbugs:true
         // publish java results from pmd, cpd, checkstyle & findbugs
         pmd: true, findbugs: true, checkstyle: true
       )
