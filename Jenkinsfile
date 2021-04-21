@@ -20,9 +20,9 @@ node() {
    )*/
       mavenExecute(
          script: this,
-         goals: ['findbugs:findbugs']
+         goals: ['findbugs:findbugs','pmd:pmd']
       )
-      checksPublishResults(
+      /*checksPublishResults(
         script: this,
         findbugs:true
         // publish java results from pmd, cpd, checkstyle & findbugs
