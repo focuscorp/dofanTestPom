@@ -22,11 +22,11 @@ node() {
          script: this,
          goals: ['findbugs:findbugs','pmd:pmd','checkstyle:checkstyle']
       )
-      checksPublishResults(
+  /*    checksPublishResults(
         script: this,
         // publish java results from pmd, cpd, checkstyle & findbugs
         pmd: true, findbugs: true, checkstyle: true
-      )
+      )*/
    }
   
    
