@@ -30,19 +30,32 @@ node() {
    }
   
    
-    /*stage('Pull-Request Voting') {
-      mavenExecuteStaticCodeChecks(
+   stage('build') {
+      mavenExecute(
          script: this,
-         pmd: [maxAllowedViolations: 50]
+         goals: ['install -DskipTests']
       )
-   }*/
+   }
+      
+   stage('Unit tests') {
+   mavenExecute(
+       script: this,
+       goals: ['test']
+       // publish test results with coverage
+       testsPublishResults(
+       jacoco: [pattern: '**/target/*.exec']
+        )
+      )
+   }
    
-   /*stage('build and nexusUpload') {
+  stage('nexusUpload') {
       mavenExecute(
          script: this,
          goals: ['deploy']
       )
-   }*/
+  }
+   
+   
   
   
    /*stage('Additional Unit Tests'){
