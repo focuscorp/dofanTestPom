@@ -34,7 +34,8 @@ node() {
    stage('nexusUpload') {
      nexusUpload (
       script: this,
-      url: 'http://artefact.focus.com.tn:8081'
+      url: 'artefact.focus.com.tn:8081',
+      mavenRepository:'maven-public'
         )
   }
       
