@@ -35,7 +35,9 @@ node() {
      nexusUpload (
       script: this,
       url: 'artefact.focus.com.tn:8081',
-      mavenRepository:'maven-public'
+      mavenRepository:'maven-public',
+      password: 'nexus_manvenuser',
+      username: 'nexus_manvenuser'
         )
   }
       
