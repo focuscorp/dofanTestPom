@@ -12,12 +12,6 @@ node() {
     }
    
    stage('Pull-Request Voting') {
-     
-    /*  mavenExecuteStaticCodeChecks(
-         script: this,
-         pmd: true
-         
-   )*/
       mavenExecute(
          script: this,
          goals: ['findbugs:findbugs','pmd:pmd','checkstyle:checkstyle']
@@ -30,7 +24,7 @@ node() {
    }
   
    
-/*   stage('build') {
+   stage('build') {
       mavenExecute(
          script: this,
          goals: ['install']
@@ -54,26 +48,21 @@ node() {
          script: this,
          goals: ['deploy']
       )
-  }*/
+  }
    
-   
-  
  
    
     stage('Integration') {
       mavenExecuteIntegration script: this
    }
    
- /*  stage('deploy') {
+   stage('deploy') {
       deployType: 'standard'
       deployTool: 'cf_native'
       cloudFoundryDeploy(
          script: this,
          cloudFoundry: [apiEndpoint: 'https://api.cf.eu10.hana.ondemand.com', appName: 'dofansecurity', manifest: './manifest.yml', org: '5955a6d8trial', space: 'dev', credentialsId: 'CF_NadimCredential']
         )
-   }*/
-   
-   
- 
+   }
    
 }
