@@ -36,7 +36,9 @@ node() {
       script: this,
       url: 'artefact.focus.com.tn:8081',
       mavenRepository:'maven-public',
-      nexusCredentialsId:'nexus_manvenuser'
+      nexusCredentialsId:'nexus_manvenuser',
+      format:'maven',
+      globalSettingsFile:'.pipeline/global_settings.xml'
         )
   }
       
