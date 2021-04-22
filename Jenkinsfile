@@ -30,8 +30,15 @@ node() {
          goals: ['install']
       )
    }
+   
+   stage('nexusUpload') {
+     nexusUpload (
+      script: this,
+      url: 'http://artefact.focus.com.tn:8081'
+        )
+  }
       
-   stage('Unit tests') {
+/*   stage('Unit tests') {
    mavenExecute(
        script: this,
        goals: ['test']
@@ -41,9 +48,9 @@ node() {
          script: this,
          jacoco: true
       )
-   }
+   }*/
    
-   stage('nexusUpload') {
+ /*  stage('nexusUpload') {
       mavenExecute(
          script: this,
          goals: ['deploy']
@@ -56,13 +63,13 @@ node() {
       mavenExecuteIntegration script: this
    }
    
-   stage('deploy') {
+   stage('Accecptance stage') {
       deployType: 'standard'
       deployTool: 'cf_native'
       cloudFoundryDeploy(
          script: this,
          cloudFoundry: [apiEndpoint: 'https://api.cf.eu10.hana.ondemand.com', appName: 'dofansecurity', manifest: './manifest.yml', org: '5955a6d8trial', space: 'dev', credentialsId: 'CF_NadimCredential']
         )
-   }
+   }*/
    
 }
