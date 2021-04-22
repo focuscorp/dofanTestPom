@@ -11,7 +11,7 @@ node() {
        
     }
    
-   stage('Pull-Request Voting') {
+ /*  stage('Pull-Request Voting') {
       mavenExecute(
          script: this,
          goals: ['findbugs:findbugs','pmd:pmd','checkstyle:checkstyle']
@@ -21,7 +21,7 @@ node() {
         // publish java results from pmd, cpd, checkstyle & findbugs
         pmd: true, findbugs: true, checkstyle: true
       )*/
-   }
+   //}
   
    
    stage('build') {
