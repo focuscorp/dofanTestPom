@@ -35,6 +35,7 @@ node() {
          script: this,
          jacoco: true
       )
+   }
    
     stage('Integration Stage') {
       mavenExecuteIntegration script: this
