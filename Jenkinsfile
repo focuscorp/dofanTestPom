@@ -53,7 +53,7 @@ node() {
   }
      
    stage('Release Stage') {
-      deployType: 'standard',
+      deployType: 'standard'
       deployTool: 'cf_native'
       
       cloudFoundryDeploy(
