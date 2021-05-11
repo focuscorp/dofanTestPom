@@ -8,34 +8,11 @@ node() {
        setupCommonPipelineEnvironment script:this
        
     }
-    stage('Static Code Check') {
-         mavenExecute(
-           script: this,
-           goals: ['findbugs:findbugs','pmd:pmd','checkstyle:checkstyle']
-         )
-    }
-  
-   
     stage('Build Stage') {
        mavenExecute(
          script: this,
          goals: ['install']
       )
-    }
- 
-    stage('Unit Tests Stage') {
-       mavenExecute(
-           script: this,
-           goals: ['test']
-           )
-       testsPublishResults(
-           script: this,
-           jacoco: true
-       )
-    }
-      
-    stage('Integration Stage') {
-      mavenExecuteIntegration script: this
     }
 
     stage('Nexus Upload Stage') {
@@ -56,11 +33,5 @@ node() {
          script: this,
          cloudFoundry: [apiEndpoint: 'https://api.cf.eu10.hana.ondemand.com', appName: 'testSuite', manifest: './manifest.yml', org: '5955a6d8trial', space: 'dev', credentialsId: 'CF_NadimCredential']
         )
-    }
-   
-    stage('Performance Stage') {
-     gatlingExecuteTests (
-        script:this,
-        pomPath: 'performance-tests/pom.xml')
     }
    }
