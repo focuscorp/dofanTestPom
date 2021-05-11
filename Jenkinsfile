@@ -14,10 +14,6 @@ node() {
          goals: ['install']
       )
     }
-   
-    stage('Integration Stage') {
-      mavenExecuteIntegration script: this
-    }
 
     stage('Nexus Upload Stage') {
         nexusUpload (
