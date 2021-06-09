@@ -14,18 +14,7 @@ node() {
          goals: ['install']
       )
     }
- 
-    stage('Unit Tests Stage') {
-       mavenExecute(
-           script: this,
-           goals: ['test']
-           )
-       testsPublishResults(
-           script: this,
-           jacoco: true
-       )
-    }
-   
+
     stage('Nexus Upload Stage') {
         nexusUpload (
          script: this,
@@ -42,7 +31,7 @@ node() {
       deployTool: 'cf_native'
       cloudFoundryDeploy(
          script: this,
-         cloudFoundry: [apiEndpoint: 'https://api.cf.eu10.hana.ondemand.com', appName: 'TestSuite', manifest: './manifest.yml', org: '5955a6d8tria', space: 'dev', credentialsId: 'CF_NadimCredential']
+         cloudFoundry: [apiEndpoint: 'https://api.cf.eu10.hana.ondemand.com', appName: 'ObjectList', manifest: './manifest.yml', org: '5955a6d8trial', space: 'dev', credentialsId: 'CF_NadimCredential']
         )
     }
    }
