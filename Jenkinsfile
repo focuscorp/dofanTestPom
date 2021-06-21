@@ -49,10 +49,4 @@ node() {
          cloudFoundry: [apiEndpoint: 'https://api.cf.eu10.hana.ondemand.com', appName: 'NewProject', manifest: './manifest.yml', org: '5955a6d8trial', space: 'dev', credentialsId: 'CF_NadimCredential']
         )
     }
-   
-    stage('Performance Stage') {
-     gatlingExecuteTests (
-        script:this,
-        pomPath: 'performance-tests/pom.xml')
-    }
    }
