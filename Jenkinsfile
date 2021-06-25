@@ -14,15 +14,8 @@ node() {
          goals: ['install']
       )
     }
- 
-    stage('Unit Tests Stage') {
-       mavenExecute(
-           script: this,
-           goals: ['test']
-           )
-       testsPublishResults(
-           script: this,
-           jacoco: true
-       )
+   
+    stage('Integration Stage') {
+      mavenExecuteIntegration script: this
     }
-   }
+}
