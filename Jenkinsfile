@@ -25,8 +25,4 @@ node() {
            jacoco: true
        )
     }
-      
-    stage('Integration Stage') {
-      mavenExecuteIntegration script: this
-    }
-}
+   }
