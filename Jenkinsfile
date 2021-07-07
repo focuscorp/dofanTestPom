@@ -1,17 +1,13 @@
-@Library('piper-lib-os') _
-
-node() {
-   
-    stage('Init') {
-       cleanWs()
-       checkout scm
-       setupCommonPipelineEnvironment script:this
-       
-    }
-    stage('Build Stage') {
-       mavenExecute(
-         script: this,
-         goals: ['install']
-      )
-    }
+pipeline{
+    
+agent any
+           stages{
+            
+               stage('build') {
+                    steps{
+                         sh 'make; make install; make'
+                       
+                    }
+                }
+           }
 }
